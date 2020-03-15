@@ -103,13 +103,13 @@ export class ProjectInfiList extends React.Component {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="complex" src={data.attributes['card-image']} />
+              <img height="150" width="150" hspace="10" vspace="10" alt="complex" src={data.attributes['card-image']} />
             </ButtonBase>
           </Grid>
-          <Grid item xs={6} sm container>
+          <Grid item xs={6} sm container >
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
+                <Typography  gutterBottom variant="subtitle1"> 
                  Name: {data.attributes.name}
                 </Typography>
                 <Typography variant="subtitle1" gutterBottom>
