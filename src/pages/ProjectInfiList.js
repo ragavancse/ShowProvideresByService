@@ -14,7 +14,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { fetchServices, fetchProvider }  from '../actions/ajaxStatusActions';
 import globalStyles from './styles';
-
+import Service from './Service'
+      
+import Providers from './Provider'
 
 
 export class ProjectInfiList extends React.Component {
@@ -59,9 +61,7 @@ export class ProjectInfiList extends React.Component {
   }
 
   render() {
-    const { services } = this.props;
-    const { provider } = this.state;
-    console.log("age",this.state.age)
+    const { services,provider } = this.props;
     const classes = withStyles(theme => ({
       root: {
         flexGrow: 1,
@@ -84,51 +84,15 @@ export class ProjectInfiList extends React.Component {
     }));
 
     return (
-      <PageBase title="List of Project" navigation="Project / Project List">
-        <div style={{paddingBotton:'200px'}} className={classes.root}>
-        <Paper style={globalStyles.selectBox} className={classes.selectBox}>
-        <select onChange={this.handleChange}>
-          <option value="All Services">All Services</option>
-          { services.length >1 && services.map( data  => (
-            <option  value={data.attributes.name}>{data.attributes.name}</option>
-          )) }</select>
-        <FormControl>
-        
-      </FormControl>
-      </Paper>
-      </div>
-      { provider.length >=1 && provider.map( data  => (
-        <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <Grid container spacing={2}>
-          <Grid item>
-            <ButtonBase className={classes.image}>
-              <img height="150" width="150" hspace="10" vspace="10" alt="complex" src={data.attributes['card-image']} />
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={6} sm container >
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography  gutterBottom variant="subtitle1"> 
-                 Name: {data.attributes.name}
-                </Typography>
-                <Typography variant="subtitle1" gutterBottom>
-                Specialties: {data.service}  {data.attributes.subspecialties.toString()}
-                </Typography>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Paper>
-    </div>
-      ))
-
-      }
-      
+      <PageBase navigation="Project / Project List">
+        <Service services={services} handleChange={this.handleChange}/>
+        <Providers provider={this.state.provider} />
       </PageBase>
     );
   }
 }
+
+
 
 ProjectInfiList.propTypes = {
   classes: PropTypes.object.isRequired,
